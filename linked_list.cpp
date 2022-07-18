@@ -53,6 +53,62 @@ Node* deleteAtBegin(Node* head2){
         return temp;
     }
 }
+Node* deleteAtEnd(Node* head2){
+    if(head2==NULL){
+        return NULL;
+    }
+    if(head2->next==NULL){
+        delete head2;
+        return NULL;
+    }
+    Node* temp= head2;
+    while(temp->next->next!=NULL){
+        temp = temp->next;
+    }
+    delete temp->next;
+    temp->next=NULL;
+    return head2;
+}
+    
+Node* insertAtPosition(Node* head2, int pos, int x){
+    int count=0;
+    Node* temp = head2;
+    Node* node = new Node(x);
+    if (pos==1){
+        node->next=head2;
+        return node;
+    }
+    while(temp!=NULL){
+        count++;
+        temp=temp->next;
+    }
+    if (pos>=count+1){
+        return head2;
+    }
+    temp = head2;
+    pos=pos-2;
+    while(pos--){
+        temp=temp->next;
+    }
+    node->next=temp->next;
+    temp->next=node;
+
+    return head2;
+}
+int searchForElement(Node* head2, int x){
+    int pos=1;
+    while(head2!=NULL){
+        if (head2->data==x){
+            return pos;
+        }
+        else{
+            pos++;
+            head2=head2->next;
+        }    
+    }
+    return -1;
+}
+
 
 int main(){
     
@@ -66,16 +122,23 @@ int main(){
     temp2->next = temp3;
 
     // To insert at beginning
-    head = InsertAtBegin(head, 80);
+    // head = InsertAtBegin(head, 80);
 
     // To insert at the end
-    head= InsertAtEnd(head,20);
+    // head= InsertAtEnd(head,20);
 
     // To delete at begin
-    head= deleteAtBegin(head);
+    // head= deleteAtBegin(head);
 
+    // To delete at end
+    // head= deleteAtEnd(head);
+
+    //To insert at a postion
+    //insertAtPosition(head,1,20);
+
+    //To search for an element in LinkedList
+    int pos = searchForElement(head, 40);
+    cout<<"Position of element is: "<<pos<<endl;
     // To traverse the linkedlist
     traverseList(head);
-
 }
-
