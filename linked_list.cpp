@@ -139,6 +139,7 @@ int main(){
     //To search for an element in LinkedList
     int pos = searchForElement(head, 40);
     cout<<"Position of element is: "<<pos<<endl;
+    
     // To traverse the linkedlist
     traverseList(head);
 }
